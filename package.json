@@ -1,0 +1,17 @@
+{
+  "name": "node-red-neato-botvac",
+  "version": "0.0.1",
+  "description": "Node Red Node for Neato Botvac robots",
+  "main": "index.js",
+  "node-red" : {
+    "nodes": {
+        "neato-config": "neato-config.js",
+        "neato-botvac": "neato-botvac.js"
+    }
+  },
+  "author": "Th. Krauss",
+  "dependencies": {
+    "node-botvac": "^0.4.0"
+  },
+  "license": "MIT"
+}

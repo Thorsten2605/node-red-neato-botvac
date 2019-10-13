@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    RED.nodes.registerType('neato-config',{
+        category: 'config',
+        defaults: {
+            name: {value: "", required:true},
+            email: {value: ""},
+            password: {value: ""},
+            robot: {value: ""}
+        },
+        label: function() {
+            return this.name;
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="neato-config">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-config-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-email">eMail</label>
+        <input type="text" id="node-config-input-email">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-password">Password</label>
+        <input type="text" id="node-config-input-password">
+    </div>
+</script>
