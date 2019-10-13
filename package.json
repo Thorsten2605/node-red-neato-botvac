@@ -1,5 +1,5 @@
 {
-  "name": "node-red-neato-botvac",
+  "name": "@thorsten2605/node-red-neato-botvac",
   "version": "0.0.1",
   "description": "Node Red Node for Neato Botvac robots",
   "main": "index.js",
@@ -13,5 +13,12 @@
   "dependencies": {
     "node-botvac": "^0.4.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Thorsten2605/node-red-neato-botvac"
+  },
+  "bugs": {
+    "url": "https://github.com/Thorsten2605/node-red-neato-botvac/issues"
+  }
 }
