@@ -1,5 +1,5 @@
 {
-  "name": "node-red-neato-botvac",
+  "name": "node-red-contrib-neato-botvac",
   "version": "0.0.1",
   "description": "Node Red Node for Neato Botvac robots",
   "main": "index.js",
