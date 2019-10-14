@@ -14,6 +14,7 @@
     "node-botvac": "^0.4.0"
   },
   "license": "MIT",
+  "keywords": [ "node-red" ],
   "repository": {
     "type": "git",
     "url": "https://github.com/thorsten2605/node-red-neato-botvac"
