@@ -103,3 +103,9 @@ Available only on some models!
 ```json
 {"command":"findme"}
 ```
+
+##ToDo
+* Boundary
+* Maps
+* Get alerts and erros as text
+* ... 
