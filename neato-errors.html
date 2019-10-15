@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    RED.nodes.registerType('neato-errors',{
+        category: 'Neato Botvac',
+        defaults: {
+            name: {value: ""},
+            language: {value:"en"}
+        },
+        inputs:1,
+        outputs:1,
+        label: function() {
+            return this.name;
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="neato-errors">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>    
+    <div class="form-row">
+       <label for="node-input-language">Language</label>
+       <select type="text" id="node-input-language" style="display: inline-block; width: 70%;" >
+           <option value="">Default</option>
+           <option value="en">English</option>
+           <option value="de">German</option>			
+       </select>
+    </div>                      
+</script>
