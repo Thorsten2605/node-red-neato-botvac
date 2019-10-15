@@ -1,0 +1,23 @@
+{
+	"clean_completed_to_start":"clean completed to start",
+	"clean_incomplete_to_start":"clean incomplete to start",
+	"dustbin_full":"dustbin full",
+	"log_upload_failed":"log upload failed",
+	"maint_brush_change":"maintenance brush change",
+	"maint_filter_change":"maintenance filter change",
+	"nav_floorplan_load_fail":"floorplan load fail",
+	"nav_floorplan_localization_fail":"floorplan localization fail",
+	"nav_floorplan_not_created":"floorplan not created",
+	"sched_conflict":"schedule conflict",
+	"swup_file_not_found":"software update file not found",
+	"swup_file_download_error":"software update download error",
+	"swup_file_size_mismatch":"software update file size mismatch",
+	"swup_file_store_error":"software update file store error",
+	"swup_invalid_signature":"software update invalid signature",
+	"swup_invalid_file_format":"software update invalid file format",
+	"swup_incorrect_vendor":"software update incorrect vendor",
+	"swup_incorrect_model":"software update incorrect model",
+	"swup_unsupported_version":"software update unsupported version",
+	"swup_flash_fail":"flash fail",
+	"swup_success":"software update successful"
+}

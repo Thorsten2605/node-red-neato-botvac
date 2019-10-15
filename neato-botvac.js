@@ -1,9 +1,11 @@
 var botvac = require('node-botvac');
 var NeatoHelper = require('./NeatoHelper.js');
-var helper = new NeatoHelper();
+var crypto = require('crypto');
 
+var helper = new NeatoHelper();
 var client = new botvac.Client();
 var robots = [];
+var maps = [];
 var node;
 
 module.exports = function(RED) {
@@ -61,7 +63,8 @@ module.exports = function(RED) {
             switch (cmd)
             {
                 default:
-                    robots[node.robotindex].getState(outputResult);
+                    robots[node.robotindex].getState(outputStatus);
+                    robotRequest(robots[node.robotindex], 'beehive', 'GET', '/maps', null, outputMaps);
                     break;
                 case "start":
                     var eco = Boolean(msg.payload.eco) || false;
@@ -84,7 +87,19 @@ module.exports = function(RED) {
                 case "findme":
                     robots[node.robotindex].findMe(outputResult);
                     break;
-                    
+                case "getpersistantmap":
+                    robots[node.robotindex].getPersistentMaps(outputResult);
+                    break;  
+                case "getmapdata":
+                    if (msg.payload.index !== undefined && Number.isInteger(msg.payload.index))
+                    {
+                        robotRequest(robots[node.robotindex], 'beehive', 'GET', '/maps', null, getMaps, msg.payload.index);
+                    }
+                    else
+                    {
+                        node.send({payload:"No index specified!", topic:"error"});
+                    }
+                    break;                   
             }
         }
     }
@@ -94,5 +109,75 @@ module.exports = function(RED) {
         var msg = {payload: result, topic: "result"};
         node.send(msg);
     }
+
+    function outputStatus(err, result)
+    {
+        var msg = {payload: result, topic: "status"};
+        node.send(msg);
+    }
+
+    function outputMaps(err, result)
+    {
+        var msg = {payload: result, topic: "error"};
+        if (err === undefined)
+        {
+            msg = {payload: result, topic: "maps"};
+        }
+        node.send(msg);
+    }
+
+    function getMaps(err, result, index)
+    {
+        if (err === undefined && index !== undefined) 
+        {
+            maps = [];
+            for (i = 0; i < result.maps.length; ++i)
+            {
+                maps.push(result.maps[i]);
+            }
+            if (maps.length > index)
+            {
+                var result = maps[index];
+                var msg = {payload: result, topic: "mapdata"};
+                node.send(msg);
+            }
+        }
+        else
+        {
+            node.send({payload: err, topic: "error"});
+        }
+    }
+
+    function robotRequest(robot, service, type, endpoint, payload, callback, passthrough) {
+        if (robot._serial && robot._secret) {
+            payload = JSON.stringify(payload);
+            var date = new Date().toUTCString();
+            var data = [robot._serial.toLowerCase(), date, payload].join("\n");
+            var headers = {
+                Date: date
+            };
+            var url;
+            if (service === 'nucleo') {
+                var hmac = crypto.createHmac('sha256', robot._secret).update(data).digest('hex');
+                headers.Authorization = 'NEATOAPP ' + hmac;
+                url = robot._nucleoBaseUrl + robot._serial + endpoint
+            } else if (service === 'beehive') {
+                headers.Authorization = robot._token;
+                url = robot._beehiveBaseUrl + robot._serial + endpoint
+            } else {
+                callback('Service' + service + 'unknown');
+            }
+            botvac.api.request(url, payload, type, headers, function (error, body) {
+                if (typeof callback === 'function') {
+                    callback(error, body, passthrough);
+                }
+            });
+        } else {
+            if (typeof callback === 'function') {
+                callback('no serial or secret');
+            }
+        }
+    }
+
     RED.nodes.registerType("neato-botvac",NeatoBotvacNode);
 }

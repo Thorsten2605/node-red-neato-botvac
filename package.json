@@ -6,7 +6,8 @@
   "node-red" : {
     "nodes": {
         "neato-config": "neato-config.js",
-        "neato-botvac": "neato-botvac.js"
+        "neato-botvac": "neato-botvac.js",
+        "neato-alerts": "neato-alerts.js"
     }
   },
   "author": "Th. Krauss",

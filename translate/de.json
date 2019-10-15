@@ -1,0 +1,23 @@
+{
+	"clean_completed_to_start":"Reinigung fertig zum Start",
+	"clean_incomplete_to_start":"Reinigung unvollständig zum Start",
+	"dustbin_full":"Behälter voll",
+	"log_upload_failed":"Log Upload fehlgeschlagen",
+	"maint_brush_change":"Wartung Bürsten wechseln",
+	"maint_filter_change":"Wartung Filter wechseln",
+	"nav_floorplan_load_fail":"Grundriss laden fehlgeschlagen",
+	"nav_floorplan_localization_fail":"Grundriss Ortsbestimmung fehlgeschlagen",
+	"nav_floorplan_not_created":"Grundriss nicht erstellt",
+	"sched_conflict":"Zeitplan Konflikt",
+	"swup_file_not_found":"Software Update Datei nicht gefunden",
+	"swup_file_download_error":"Software Update Download Fehler",
+	"swup_file_size_mismatch":"Software Update Dateigröße unterschiedlich",
+	"swup_file_store_error":"Software Update Datei Speicherfehler",
+	"swup_invalid_signature":"Software Update ungültige Signatur",
+	"swup_invalid_file_format":"Software Update ungültiges Dateiformat",
+	"swup_incorrect_vendor":"Software Update falscher Hersteller",
+	"swup_incorrect_model":"Software Update falsches Modell",
+	"swup_unsupported_version":"Software Update nicht unterstützte Version",
+	"swup_flash_fail":"Software Update fehlgeschlagen",
+	"swup_success":"Software Update erfolgreich"
+}
