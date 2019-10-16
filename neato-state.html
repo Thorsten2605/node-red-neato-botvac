@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    RED.nodes.registerType('neato-state',{
+        category: 'Neato Botvac',
+        defaults: {
+            name: {value: ""},
+            confignode: {value:"", type:"neato-config"}
+        },
+        inputs:1,
+        outputs:1,
+        label: function() {
+            return this.name;
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="neato-state">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>    
+    <div class="form-row">
+        <label for="node-input-confignode"> Neato Config Node</label>
+        <input type="text" id="node-input-confignode">
+    </div>                    
+</script>

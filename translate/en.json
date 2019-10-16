@@ -56,5 +56,28 @@
 	"nav_rightdrop_leftbump":"navigation rightdrop leftbump",
 	"nav_robot_falling":"navigation robot falling",
 	"nav_undocking_failed":"navigation undocking failed",
-	"not_on_charge_base":"not on charge base"
+	"not_on_charge_base":"not on charge base",
+	
+	"status_0":"Invalid",
+	"status_1":"Idle",
+	"status_2":"Busy",
+	"status_3":"Paused",
+	"status_4":"Error",
+	
+	"action_0":	"Invalid",
+	"action_1":	"House Cleaning",
+	"action_2":	"Spot Cleaning",
+	"action_3":	"Manual Cleaning",
+	"action_4":	"Docking",
+	"action_5":	"User Menu Active",
+	"action_6":	"Suspended Cleaning",
+	"action_7":	"Updating",
+	"action_8":	"Copying Logs",
+	"action_9":	"Recovering Location",
+	"action_10":	"IEC Test",
+	"action_11":	"Map cleaning",
+	"action_12":	"Exploring map (creating a persistent map)",
+	"action_13":	"Acquiring Persistent Map IDs",
+	"action_14":	"Creating & Uploading Map",
+	"action_15":	"Suspended Exploration"
 }

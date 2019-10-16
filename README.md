@@ -159,6 +159,11 @@ To extract the errors and alerts out of the complete payload of the status node,
 These two nodes will give you a human readable string of the enum which Neato offers.
 Simply connect these to the neato-status node.
 
+## State and Action
+To extract the state and action out of the complete payload of the status node, I added the nodes neato-state and neato-action.
+These two nodes will give you a human readable string of the enum which Neato offers.
+Simply connect these to the neato-status node.
+
 ## ToDo
 * Boundary
 * Maps

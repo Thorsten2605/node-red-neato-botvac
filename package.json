@@ -9,7 +9,9 @@
         "neato-status": "neato-status.js",
         "neato-maps":   "neato-maps.js",
         "neato-alerts": "neato-alerts.js",
-        "neato-errors": "neato-errors.js"
+        "neato-errors": "neato-errors.js",
+        "neato-state": "neato-state.js",
+        "neato-action": "neato-action.js"
     }
   },
   "author": "Th. Krauss",

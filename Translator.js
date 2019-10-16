@@ -9,6 +9,7 @@ class Translator
 
     getString(key)
     {
+        console.log(this.lang[key]);
         return this.lang[key];
     }
 }

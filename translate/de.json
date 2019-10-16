@@ -56,5 +56,28 @@
 	"nav_rightdrop_leftbump":"Navigation rechter Sturz linker Bumper",
 	"nav_robot_falling":"Navigation Roboter fällt",
 	"nav_undocking_failed":"Navigation abdocken fehlgeschlagen",
-	"not_on_charge_base":"Roboter nicht auf Ladestation"
+	"not_on_charge_base":"Roboter nicht auf Ladestation",
+	
+	"status_0":"ungültig",
+	"status_1":"Leerlauf",
+	"status_2":"beschäftigt",
+	"status_3":"pausiert",
+	"status_4":"Fehler",
+	
+	"action_0":	"ungültig",
+	"action_1":	"Haus Reinigung",
+	"action_2":	"Fleck Reinigung",
+	"action_3":	"Manuelle Reinigung",
+	"action_4":	"Angedockt",
+	"action_5":	"Benutzer Menü aktiv",
+	"action_6":	"Reinigung ausgesetzt",
+	"action_7":	"Updating",
+	"action_8":	"Logs kopieren",
+	"action_9":	"Ortsbestimmung",
+	"action_10":	"IEC Test",
+	"action_11":	"Karten Reinigung",
+	"action_12":	"Karte erstellen",
+	"action_13":	"Übernahme der persistenten Karten IDs",
+	"action_14":	"Erstellung & Upload der Karten",
+	"action_15":	"Erkundung ausgesetzt"
 }
