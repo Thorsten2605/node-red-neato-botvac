@@ -154,6 +154,11 @@ Example of the output data of the node:
 }
 ```
 
+## Error and Alerts
+To extract the errors and alerts out of the complete payload of the status node, I added the nodes neato-alerts and neato-errors.
+These two nodes will give you a human readable string of the enum which Neato offers.
+Simply connect these to the neato-status node.
+
 ## ToDo
 * Boundary
 * Maps
