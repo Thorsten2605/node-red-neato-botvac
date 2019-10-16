@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    RED.nodes.registerType('neato-maps',{
+        category: 'Neato Botvac',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},           
+            confignode: {value:"", type:"neato-config"},
+            robotindex: {value:0}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"neato-maps";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="neato-maps">
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-confignode"> Neato Config Node</label>
+        <input type="text" id="node-input-confignode">
+    </div>
+    <div class="form-row">
+        <label for="node-input-robotindex">Robot Index</label>
+        <input type="number" id="node-input-robotindex">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="neato-maps">
+    <p>Configuration of Neato Server Account</p>
+</script>

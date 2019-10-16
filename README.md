@@ -3,9 +3,12 @@ Node-Red node for Neato Botvac robots
 
 Depends on [node-botvac](https://www.npmjs.com/package/node-botvac)
 
+## Important Information
+Due to add map supprt I had to rename the neato-botvac node to neato-status since Version 0.1.0. Sorry!
+
 ## Configuration
 
-1. Place "neato botvac" node
+1. Place "neato status" node
 2. Open configuration of node and click on the pencil button to create a new neato configuration
 3. Enter eMail and password of your neato account (you need to be registered!)
 4. Configure the index of the robot (0 - first robot, 1 - second robot, ...)
@@ -102,6 +105,53 @@ Available only on some models!
 #### findme
 ```json
 {"command":"findme"}
+```
+
+## Getting map information
+To get map information place the neato-maps node and configure the neato config as described above.
+Any command on the input side will cause to get the actual map data from your configured robot.
+
+Example of the output data of the node:
+```json
+{
+	"payload":
+	{
+		"stats": {},
+		"maps":[
+			{
+				"id":"2019-10-16T07:00:01Z",
+				"url":"https://neatorobotics.s3.amazonaws.com/....",
+				"url_valid_for_seconds":300,
+				"version":1,
+				"generated_at":"2019-10-16T07:42:55Z",
+				"status":"complete",
+				"launched_from":"schedule",
+				"error":null,
+				"modifier":1,
+				"start_at":"2019-10-16T07:00:01Z",
+				"end_at":"2019-10-16T07:42:55Z",
+				"end_orientation_relative_degrees":4,
+				"run_charge_at_start":98,
+				"run_charge_at_end":67,
+				"persistent_map_id":null,
+				"cleaned_with_persistent_map_id":null,
+				"suspended_cleaning_charging_count":0,
+				"time_in_suspended_cleaning":0,
+				"time_in_error":0,
+				"time_in_pause":0,
+				"cleaned_area":36.4224,
+				"base_count":1,
+				"is_docked":true,
+				"delocalized":false,
+				"valid_as_persistent_map":false,
+				"category":2,
+				"mode":2,
+				"navigation_mode":1
+			},
+			//... Up to 20 entries
+		]
+	}
+}
 ```
 
 ## ToDo

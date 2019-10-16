@@ -7,7 +7,9 @@ module.exports = function(RED)
     function NeatoErrorNode(config) {
         RED.nodes.createNode(this, config);
         node = this;
-        this.language = config.language;
+        var configNode = RED.nodes.getNode(config.confignode);
+        if (configNode !== null) this.language = configNode.language;
+        else this.language = "en";
         translator = new TranslatorHelper(this.language);
         
         //handle input message

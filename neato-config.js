@@ -6,6 +6,7 @@ module.exports = function(RED)
         this.name = config.name;
         this.email = config.email;
         this.password = config.password;
+        this.language = config.language;
     }
 
     RED.nodes.registerType("neato-config", NeatoConfigNode);
