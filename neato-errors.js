@@ -22,7 +22,10 @@ module.exports = function(RED)
 	{
         if (msg === undefined || msg === null) return;
         if (msg.payload === undefined || msg.payload === null) return;
-        if (msg.payload.error === undefined || msg.payload.error === null) return;
+        if (msg.payload.error === undefined || msg.payload.error === null)
+        {
+            node.send({payload: "", topic:"error"});
+        }
         
         node.send({payload: translator.getString(msg.payload.error), topic:"error"});
     }
