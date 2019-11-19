@@ -93,6 +93,10 @@ The following commands are available at the moment:
 ```json
 {"command":"pause"}
 ```
+#### resume
+```json
+{"command":"resume"}
+```
 #### stop
 ```json
 {"command":"stop"}
