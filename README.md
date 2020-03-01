@@ -95,6 +95,10 @@ Parameters are only examples here...
 ```json
 {"command":"pause"}
 ```
+#### resume
+```json
+{"command":"resume"}
+```
 #### stop
 ```json
 {"command":"stop"}
