@@ -86,6 +86,8 @@ or [Neato Nucleo Api](https://developers.neatorobotics.com/api/nucleo)
 ### Commands
 The following commands are available at the moment:
 #### start
+All parameters which are not given will be preset with the internal settings of robot!
+Parameters are only examples here...
 ```json
 {"command":"start","eco":true,"navigationmode":1,"nogolines":false}
 ```
@@ -105,6 +107,41 @@ Available only on some models!
 #### findme
 ```json
 {"command":"findme"}
+```
+#### dismissCurrentAlert
+```json
+{"command":"dismissCurrentAlert"}
+```
+#### enableSchedule
+```json
+{"command":"enableSchedule"}
+```
+#### disableSchedule
+```json
+{"command":"disableSchedule"}
+```
+#### getSchedule
+```json
+{"command":"getSchedule"}
+```
+#### startSpotCleaning
+All parameters which are not given will be preset with the internal settings of robot!
+Parameters are only examples here...
+```json
+{"command":"startSpotCleaning","eco":true,"width":50, "height": 20, "repeat":false, "navigationmode":1}
+```
+#### startManualCleaning
+All parameters which are not given will be preset with the internal settings of robot!
+Parameters are only examples here...
+```json
+{"command":"startManualCleaning","eco":true,"navigationmode":1}
+```
+#### startCleaningBoundary
+All parameters (except boundaryId) which are not given will be preset with the internal settings of robot!
+To execute the command you have to set a boundaryId of a map!
+Parameters are only examples here...
+```json
+{"command":"startCleaningBoundary","eco":true, "extraCare":false, "boundaryId":"XXXXX"}
 ```
 
 ## Getting map information
@@ -154,6 +191,32 @@ Example of the output data of the node:
 }
 ```
 
+## Getting boundary information
+To get boundary information place the neato-boundary node and configure the neato config as described above.
+There are two commands to execute in this node:
+
+#### getMapBoundaries
+To get a mapID you have to look for it with the neato-map node!
+Parameters are only examples here...
+```json
+{"command":"startSpotCleaning","mapid":"-->Get this with the map node!"}
+```
+
+#### setMapBoundaries
+To get a mapID you have to look for it with the neato-map node!
+Boundaries are given as array with the following data:
+ * {string} color - color hex code for a type polygone or '#000000' for a type polyline
+ * {bool} enabled - always true, unknown usage
+ * {string} id - boundary id (uuid-v4)
+ * {string} name - polygone name or empty string for a type polyline
+ * {number[]} [relevancy] - array of 2 number, center of a type polygone
+ * {string} type - either polyline (for a no go lines) or polygon (for a zone)
+ * {number[][]} vertices - array of array of two points, coordinates of the points
+Parameters are only examples here...
+```json
+{"command":"startSpotCleaning","mapid":"-->Get this with the map node!", "boundaries":"-->see object definition above"}
+```
+
 ## Error and Alerts
 To extract the errors and alerts out of the complete payload of the status node, I added the nodes neato-alerts and neato-errors.
 These two nodes will give you a human readable string of the enum which Neato offers.
@@ -165,7 +228,4 @@ These two nodes will give you a human readable string of the enum which Neato of
 Simply connect these to the neato-status node.
 
 ## ToDo
-* Boundary
-* Maps
-* Get alerts and erros as text
-* ... 
+Please open an issue to ask for new features!

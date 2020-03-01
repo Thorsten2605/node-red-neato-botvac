@@ -8,6 +8,7 @@
         "neato-config": "neato-config.js",
         "neato-status": "neato-status.js",
         "neato-maps":   "neato-maps.js",
+        "neato-boundary":   "neato-boundary.js",
         "neato-alerts": "neato-alerts.js",
         "neato-errors": "neato-errors.js",
         "neato-state": "neato-state.js",
@@ -15,9 +16,6 @@
     }
   },
   "author": "Th. Krauss",
-  "dependencies": {
-    "node-botvac": "^0.4.0"
-  },
   "keywords": [ "node-red", "neato", "botvac" ],
   "license": "MIT",
   "repository": {

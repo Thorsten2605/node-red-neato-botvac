@@ -1,4 +1,4 @@
-var botvac = require('node-botvac');
+var botvac = require('./node-botvac/index.js');
 var NeatoHelper = require('./NeatoHelper.js');
 var crypto = require('crypto');
 
@@ -65,9 +65,9 @@ module.exports = function(RED) {
                     robots[node.robotindex].getState(outputStatus);
                     break;
                 case "start":
-                    var eco = Boolean(msg.payload.eco) || false;
-                    var navigationmode = msg.payload.navigationmode || 1;
-                    var nogolines = Boolean(msg.payload.nogolines) || false;
+                    var eco = Boolean(msg.payload.eco) || robots[node.robotindex].eco;
+                    var navigationmode = msg.payload.navigationmode || robots[node.robotindex].navigationMode;
+                    var nogolines = Boolean(msg.payload.nogolines) || robots[node.robotindex].noGoLines;
                     robots[node.robotindex].startCleaning(eco, navigationmode, nogolines, outputResult);
                     break;
                 case "pause":
@@ -84,20 +84,51 @@ module.exports = function(RED) {
                     break;
                 case "findme":
                     robots[node.robotindex].findMe(outputResult);
-                    break;                
+                    break; 
+                case "dismissCurrentAlert":
+                    robots[node.robotindex].dismissCurrentAlert(outputResult);
+                    break;   
+                case "enableSchedule":
+                    robots[node.robotindex].enableSchedule(outputResult);
+                    break;    
+                case "disableSchedule":
+                    robots[node.robotindex].disableSchedule(outputResult);
+                    break;      
+                case "getSchedule":
+                    robots[node.robotindex].getSchedule(outputResult);
+                    break;   
+                case "startSpotCleaning":   
+                    var eco = Boolean(msg.payload.eco) || robots[node.robotindex].eco;
+                    var width = msg.payload.width || robots[node.robotindex].spotWidth;
+                    var height = msg.payload.height || robots[node.robotindex].spotHeight;
+                    var repeat = Boolean(msg.payload.repeat) || robots[node.robotindex].spotRepeat;
+                    var navigationmode = msg.payload.navigationmode || robots[node.robotindex].navigationMode;
+                    robots[node.robotindex].startSpotCleaning(eco, width, height, repeat, navigationMode, outputResult);      
+                    break;
+                case "startManualCleaning":
+                    var eco = Boolean(msg.payload.eco) || robots[node.robotindex].eco;
+                    var navigationmode = msg.payload.navigationmode || robots[node.robotindex].navigationMode;
+                    robots[node.robotindex].startSpotCleaning(eco, navigationMode, outputResult);
+                    break;
+                case "startCleaningBoundary":
+                    var eco = Boolean(msg.payload.eco) || robots[node.robotindex].eco;
+                    var extraCare = Boolean(msg.payload.extracare) || false;
+                    var boundaryId = msg.payload.boundaryid;
+                    robots[node.robotindex].startCleaningBoundary(eco, extraCare, boundaryId, outputResult);
+                    break;
             }
         }
     }
 
     function outputResult(err, result)
     {
-        var msg = {payload: result, topic: "result"};
+        var msg = {payload: result, topic: "result", error: err};
         node.send(msg);
     }
 
     function outputStatus(err, result)
     {
-        var msg = {payload: result, topic: "status"};
+        var msg = {payload: result, topic: "status", error: err};
         node.send(msg);
     }
 

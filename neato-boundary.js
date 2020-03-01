@@ -9,7 +9,7 @@ var maps = [];
 var node;
 
 module.exports = function(RED) {
-    function NeatoMapsNode(config) {
+    function NeatoBoundaryNode(config) {
         RED.nodes.createNode(this,config);
         node = this;
         var configNode = RED.nodes.getNode(config.confignode);
@@ -62,62 +62,38 @@ module.exports = function(RED) {
         {
             switch (cmd)
             {
-                default:
-                    robotRequest(robots[node.robotindex], 'beehive', 'GET', '/maps', null, outputMaps);
-                    break;
-                case "getpersistantmap":
-                    robots[node.robotindex].getPersistentMaps(outputResult);
+                case "getMapBoundaries":
+                    var mapid = msg.payload.mapid;
+                    if (mapid === undefined) 
+                    {
+                        node.send({payload:"No MapID specified!", topic:"error"});
+                        break;
+                    }
+                    robots[node.robotindex].getMapBoundaries(mapid, outputResult);
                     break;  
-                case "getmapdata":
-                    if (msg.payload.index !== undefined && Number.isInteger(msg.payload.index))
+                case "setMapBoundaries":
+                    var mapid = msg.payload.mapid;
+                    var boundaries = msg.payload.boundaries;
+                    if (mapid === undefined) 
                     {
-                        robotRequest(robots[node.robotindex], 'beehive', 'GET', '/maps', null, getMaps, msg.payload.index);
+                        node.send({payload:"No MapID specified!", topic:"error"});
+                        break;
                     }
-                    else
+                    if (boundaries === undefined) 
                     {
-                        node.send({payload:"No index specified!", topic:"error"});
+                        node.send({payload:"No Boundaries specified!", topic:"error"});
+                        break;
                     }
-                    break;                   
+                    robots[node.robotindex].setMapBoundaries(mapid, boundaries, outputResult);
+                    break;                    
             }
         }
     }
 
     function outputResult(err, result)
     {
-        var msg = {payload: result, topic: "result"};
+        var msg = {payload: result, topic: "result", error: err};
         node.send(msg);
-    }
-
-    function outputMaps(err, result)
-    {
-        var msg = {payload: result, topic: "error"};
-        if (err === undefined)
-        {
-            msg = {payload: result, topic: "maps"};
-        }
-        node.send(msg);
-    }
-
-    function getMaps(err, result, index)
-    {
-        if (err === undefined && index !== undefined) 
-        {
-            maps = [];
-            for (i = 0; i < result.maps.length; ++i)
-            {
-                maps.push(result.maps[i]);
-            }
-            if (maps.length > index)
-            {
-                var result = maps[index];
-                var msg = {payload: result, topic: "mapdata"};
-                node.send(msg);
-            }
-        }
-        else
-        {
-            node.send({payload: err, topic: "error"});
-        }
     }
 
     function robotRequest(robot, service, type, endpoint, payload, callback, passthrough) {
@@ -151,5 +127,5 @@ module.exports = function(RED) {
         }
     }
 
-    RED.nodes.registerType("neato-maps",NeatoMapsNode);
+    RED.nodes.registerType("neato-boundary",NeatoBoundaryNode);
 }
